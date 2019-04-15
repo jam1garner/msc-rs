@@ -195,10 +195,13 @@ pub struct Script {
 }
 
 #[cfg(test)]
-mod tests {
+mod test {
+    use super::*;
+
     #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+    fn test_parser() {
+        let pikachu = MscsbFile::open("/home/jam/dev/msc/pikachu.mscsb").unwrap();
+        println!("# of scripts - {}", pikachu.scripts.len());
     }
 }
 

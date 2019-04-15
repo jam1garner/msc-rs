@@ -39,13 +39,13 @@ pub fn take_file(input: &[u8]) -> IResult<&[u8], MscsbFile> {
         entrypoint: le_u32 >>
         script_count: le_u32 >>
         _unk: le_u32 >>
-        string_size: le_u32 >>
+        string_size: tap!(string_size: le_u32 => {println!("string size- {}", string_size)}) >>
         string_count: le_u32 >>
         _padding: take!(8) >>
         script_data: take!(script_data_size) >>
         _padding: take!((0x10 - (script_data_size & 0xF)) & 0xF) >> // pad to 0x10
         script_offsets: count!(le_u32, script_count as usize) >>
-        _padding: take!((0x10 - (script_data_size & 0xF)) & 0xF) >> // pad to 0x10
+        _padding: take!((0x10 - ((script_count * 4) & 0xF)) & 0xF) >> // pad to 0x10
         strings: count!(take!(string_size), string_count as usize) >>
         ({
             let mut script_offsets = script_offsets.clone();
@@ -58,7 +58,7 @@ pub fn take_file(input: &[u8]) -> IResult<&[u8], MscsbFile> {
                         &script_data[script_offsets[i] as usize..script_offsets[i+1] as usize],
                         script: complete!(apply!(take_script, script_offsets[i] as usize)) >>
                         (script)
-                    ).ok()?.1)
+                    ).unwrap().1)
                 })
                 .collect();
             let strings =
