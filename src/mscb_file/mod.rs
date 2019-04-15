@@ -18,5 +18,9 @@ impl MscsbFile {
         File::open(path).ok()?.read_to_end(&mut buffer).ok()?;
         Some(take_file(&buffer[..]).unwrap().1)
     }
+
+    pub fn iter(&self) -> std::slice::Iter<Script> {
+        self.scripts.iter()
+    }
 }
 

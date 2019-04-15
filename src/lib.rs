@@ -183,15 +183,23 @@ pub enum Cmd {
     Exit, // 0x4D
 }
 
+#[derive(Debug)]
 pub struct Command {
     pub cmd: Cmd,
     pub push_bit: bool,
     pub position: u32,
 }
 
+#[derive(Debug)]
 pub struct Script {
     pub commands: Vec<Command>,
     pub bounds: (u32, u32),
+}
+
+impl Script {
+    pub fn iter(&self) -> std::slice::Iter<Command> {
+        self.commands.iter()
+    }
 }
 
 #[cfg(test)]
@@ -202,6 +210,10 @@ mod test {
     fn test_parser() {
         let pikachu = MscsbFile::open("/home/jam/dev/msc/pikachu.mscsb").unwrap();
         println!("# of scripts - {}", pikachu.scripts.len());
+        println!("Script 1\n--------");
+        for c in pikachu.scripts[0].iter() {
+            println!("{:?}", c);
+        }
     }
 }
 
