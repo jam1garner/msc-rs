@@ -1,6 +1,6 @@
 [package]
 name = "msc"
-version = "0.1.0"
+version = "0.5.0"
 authors = ["jam1garner <jam1.mcleod@hotmail.com>"]
 edition = "2018"
 repository = "https://github.com/jam1garner/msc-rs"
