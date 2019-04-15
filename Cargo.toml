@@ -7,3 +7,4 @@ repository = "https://github.com/jam1garner/msc-rs"
 license = "MIT"
 
 [dependencies]
+nom = "4.2.3"
