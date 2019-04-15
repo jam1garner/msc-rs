@@ -2,13 +2,13 @@
 // msc
 //  L Command
 //  L Script
-//  L MscbFile
+//  L MscsbFile
 //
 
 #[macro_use] extern crate nom;
 
 mod mscb_file;
-pub use mscb_file::MscbFile;
+pub use mscb_file::MscsbFile;
 
 #[derive(Debug)]
 pub enum Cmd {
@@ -184,14 +184,14 @@ pub enum Cmd {
 }
 
 pub struct Command {
-    cmd: Cmd,
-    push_bit: bool,
-    position: u32,
+    pub cmd: Cmd,
+    pub push_bit: bool,
+    pub position: u32,
 }
 
 pub struct Script {
-    commands: Vec<Command>,
-    bounds: (u32, u32),
+    pub commands: Vec<Command>,
+    pub bounds: (u32, u32),
 }
 
 #[cfg(test)]

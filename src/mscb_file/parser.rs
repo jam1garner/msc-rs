@@ -1,5 +1,5 @@
 use nom::{be_u8, be_u16, be_u32, le_u32, IResult};
-use super::MscbFile;
+use super::MscsbFile;
 use super::super::{Cmd, Command, Script};
 
 fn get_nom_position(input: &[u8], input_size: usize) -> IResult<&[u8], usize> {
@@ -31,7 +31,7 @@ pub fn str_from_u8_nul_utf8(utf8_src: &[u8]) -> Result<&str, std::str::Utf8Error
     ::std::str::from_utf8(&utf8_src[0..nul_range_end])
 }
 
-pub fn take_file(input: &[u8]) -> IResult<&[u8], MscbFile> {
+pub fn take_file(input: &[u8]) -> IResult<&[u8], MscsbFile> {
     do_parse!(
         input,
         tag!(b"\xB2\xAC\xBC\xBA\xE6\x90\x32\x01\xFD\x02\x00\x00\x00\x00\x00\x00") >>
@@ -68,7 +68,7 @@ pub fn take_file(input: &[u8]) -> IResult<&[u8], MscbFile> {
                     String::from(
                         str_from_u8_nul_utf8(s).unwrap_or("[UTF-8 Error]")
                 )).collect();
-            MscbFile {
+            MscsbFile {
                 scripts,
                 strings,
                 entrypoint
