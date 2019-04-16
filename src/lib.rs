@@ -6,11 +6,12 @@
 //
 
 #[macro_use] extern crate nom;
+extern crate byteorder;
 
 mod mscb_file;
 pub use mscb_file::MscsbFile;
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum Cmd {
     Nop, // 0
     Unk1, // 1

@@ -1,6 +1,8 @@
 mod parser;
+mod writer;
 
-use super::{Script, Command, Cmd};
+use writer::*;
+use super::Script;
 use parser::take_file;
 use std::fs::File;
 use std::io::prelude::*;
