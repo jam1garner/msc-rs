@@ -184,14 +184,14 @@ pub enum Cmd {
     Exit, // 0x4D
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Command {
     pub cmd: Cmd,
     pub push_bit: bool,
     pub position: u32,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Script {
     pub commands: Vec<Command>,
     pub bounds: (u32, u32),
