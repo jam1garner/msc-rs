@@ -39,7 +39,7 @@ pub fn take_file(input: &[u8]) -> IResult<&[u8], MscsbFile> {
         entrypoint: le_u32 >>
         script_count: le_u32 >>
         _unk: le_u32 >>
-        string_size: tap!(string_size: le_u32 => {println!("string size- {}", string_size)}) >>
+        string_size: le_u32 >>
         string_count: le_u32 >>
         _padding: take!(8) >>
         script_data: take!(script_data_size) >>
