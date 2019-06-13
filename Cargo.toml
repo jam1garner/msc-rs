@@ -1,6 +1,6 @@
 [package]
 name = "msc"
-version = "0.5.2"
+version = "0.5.3"
 authors = ["jam1garner <jam1.mcleod@hotmail.com>"]
 edition = "2018"
 description = "A library for working with Smash 4's MotionScript bytecode"
