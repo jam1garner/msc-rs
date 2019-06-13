@@ -369,12 +369,12 @@ fn take_cmd(input: &[u8], position: usize) -> IResult<&[u8], Command> {
                     var_num
                 })
             ) |
-            0x46 => value!(Cmd::Equals, take!(0)) |
-            0x47 => value!(Cmd::NotEquals, take!(0)) |
-            0x48 => value!(Cmd::LessThan, take!(0)) |
-            0x49 => value!(Cmd::LessOrEqual, take!(0)) |
-            0x4A => value!(Cmd::Greater, take!(0)) |
-            0x4B => value!(Cmd::GreaterOrEqual, take!(0)) |
+            0x46 => value!(Cmd::EqualsF, take!(0)) |
+            0x47 => value!(Cmd::NotEqualsF, take!(0)) |
+            0x48 => value!(Cmd::LessThanF, take!(0)) |
+            0x49 => value!(Cmd::LessOrEqualF, take!(0)) |
+            0x4A => value!(Cmd::GreaterF, take!(0)) |
+            0x4B => value!(Cmd::GreaterOrEqualF, take!(0)) |
             0x4C => value!(Cmd::Error4C, take!(0)) |
             0x4D => value!(Cmd::Exit, take!(0))
         ) >>
