@@ -31,5 +31,14 @@ impl MscsbFile {
     pub fn iter(&self) -> std::slice::Iter<Script> {
         self.scripts.iter()
     }
+
+    pub fn get_script_from_loc(&self, loc: u32) -> Option<usize> {
+        for i in 0..self.scripts.len() {
+            if self.scripts[i].bounds.0 == loc {
+                return Some(i);
+            }
+        }
+        None
+    }
 }
 
